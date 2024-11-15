@@ -14,8 +14,9 @@ export const HomeBackGround = styled.img({
   left: 0,
 });
 
+
 export const DivContent = styled.div({
-  width: "60%",
+  width: "auto",
   color: "white",
   marginRight: "10px",
   marginTop: "10px",

@@ -6,6 +6,7 @@ import {
   Arroba,
   ButaoDeBusca,
   Descrição,
+
   DivContent,
   HomeBackGround,
   HomeContent,
@@ -35,7 +36,7 @@ const App = () => {
 
       setCurrentUser({ avatar_url, name, login, bio });
 
-      const reposData = await fetch(`https://api.github.com/users/${user}/repos`);
+      const reposData = await fetch(`https://api.github.com/users/${user}/repos?sort=created_at&order=desc`);
       const newRepos = await reposData.json();
       if (newRepos.length) {
         setRepos(newRepos);
@@ -51,9 +52,12 @@ const App = () => {
     <>
       <Header />
       <HomeContent>
-        <HomeBackGround src="./logo.webp" alt="img" />
+     
+          <HomeBackGround src="./logo.webp" alt="img" />
+        
+        
         <DivContent>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", margin: 0, padding: 0 }}>
             <Input
               name="usuario"
               placeholder="Escreva o nome do usuario"
@@ -83,7 +87,7 @@ const App = () => {
                 <Title>Repositorios</Title>
                 {repos.map (repo => (
                   <a style={{textDecoration: 'none'}} href={repo.html_url} target="_blank" rel="noreferrer" >
-                    <ItemList title={repo.name} description={repo.description} language={repo.language} />
+                    <ItemList title={repo.name} description={repo.description} language={repo.language} date={repo.created_at}/>
                   </a>
 
                 ))}
